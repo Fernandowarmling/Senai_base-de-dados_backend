@@ -35,8 +35,36 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Higiene Pessoal'),(2,'Limpeza'),(3,'Cama, mesa e banho'),(4,'Frios'),(5,'Bazar');
+INSERT INTO `categoria` VALUES (1,'Higiene Pessoal'),(2,'Limpeza'),(3,'Cama, mesa e banho'),(4,'Frios e Laticinios'),(5,'Carnes');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `produto`
+--
+
+DROP TABLE IF EXISTS `produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produto` (
+  `idproduto` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(45) DEFAULT NULL,
+  `preco` decimal(5,2) DEFAULT NULL,
+  `idcategoria` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idproduto`),
+  KEY `fkcategoria` (`idcategoria`),
+  CONSTRAINT `fkcategoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `produto`
+--
+
+LOCK TABLES `produto` WRITE;
+/*!40000 ALTER TABLE `produto` DISABLE KEYS */;
+INSERT INTO `produto` VALUES (1,'Escova dental',3.50,1),(2,'Creme dental',2.90,1),(3,'Presunto',4.99,4),(4,'Lençol 180 fios',85.80,3),(5,'Desinfetante',6.99,2);
+/*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -56,7 +84,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-24 21:34:13
+-- Dump completed on 2023-04-26 21:47:36
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: agenda
@@ -118,4 +146,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-24 21:34:13
+-- Dump completed on 2023-04-26 21:47:36
